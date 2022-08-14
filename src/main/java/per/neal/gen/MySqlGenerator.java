@@ -75,6 +75,7 @@ public class MySqlGenerator {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("rootpw");
+//        dsc.setPassword("12345678");
         mpg.setDataSource(dsc);
 
         // TODO 包配置
