@@ -1,11 +1,7 @@
 package per.neal.controller;
 
 
-import io.reactivex.rxjava3.functions.Action;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import per.neal.service.CommodityService;
 
 import java.util.concurrent.TimeUnit;
@@ -35,7 +31,7 @@ public class CommodityController {
     }
 
     @PostMapping("/build")
-    public String build(){
+    public String build() {
         commodityService.build();
         return "ok";
     }
@@ -44,21 +40,18 @@ public class CommodityController {
     /**
      * 秒杀
      */
-    public String seckill(String commodityCode){
-
-    }
-
-    /**
-     * 下单
-     */
-    public String buy(String commodityCode){
-
+    @PostMapping("seckill")
+    public String seckill(@RequestParam("code") String commodityCode) {
+        commodityService.seckill(commodityCode);
+        return "ok";
     }
 
     /**
      * 支付
      */
-    public String pay(String orderNo){
+    @PostMapping("pay")
+    public String pay(@RequestParam String orderNo) {
+        // 模拟回调
         Runnable action = () -> {
             try {
                 TimeUnit.SECONDS.sleep(3);
@@ -67,10 +60,17 @@ public class CommodityController {
             }
             payNotify(orderNo);
         };
+        new Thread(action).start();
+
         return "pay ok";
     }
 
-    public String payNotify(String orderNo){
+    /**
+     * 回调
+     *
+     * @param orderNo 订单号
+     */
+    public String payNotify(String orderNo) {
         return "order finish";
     }
 }

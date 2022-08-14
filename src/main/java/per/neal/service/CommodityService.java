@@ -17,4 +17,11 @@ public interface CommodityService extends IService<Commodity> {
      * 构建插入假数据
      */
     void build();
+
+    /**
+     * 秒杀
+     *
+     * @param commodityCode 商品编号
+     */
+    void seckill(String commodityCode);
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import per.neal.dao.CommodityMapper;
 import per.neal.entity.Commodity;
+import per.neal.exception.BusinessException;
 import per.neal.service.CommodityService;
 
 import java.util.HashSet;
@@ -36,7 +37,27 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
             commodityNameList.add(commodity);
         }
         if (!this.saveBatch(commodityNameList)) {
-            throw new RuntimeException("插入有误");
+            throw BusinessException.serviceException("插入有误");
         }
+    }
+
+    private void extracted() {
+        throw new RuntimeException("插入有误");
+    }
+
+    @Override
+    public void seckill(String commodityCode) {
+        Commodity one = this.lambdaQuery().eq(Commodity::getCode, commodityCode).one();
+        if (one == null) {
+            // 缓存不存在的商品
+            throw BusinessException.serviceException("商品不存在");
+        }
+
+        Integer stock = one.getStock();
+        if (stock == null || stock <= 0) {
+            throw BusinessException.serviceException("商品已经被抢光啦");
+        }
+
+
     }
 }

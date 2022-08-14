@@ -1,10 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://root:mysqlpw@localhost:55001?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://root:rootpw@localhost:3306/miaosha?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
   redis:
-    port: 55000
-    password: redispw
+    port: 6379
   profiles:
     active: dev
 server:
