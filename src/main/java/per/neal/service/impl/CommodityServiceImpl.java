@@ -31,7 +31,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         Set<Commodity> commodityNameList = new HashSet<>();
         for (int i = 0; i < 100; i++) {
             Commodity commodity = new Commodity();
-            commodity.setCode(instance.idNumber().ssnValid());
+            commodity.setCode(instance.idNumber().valid());
             commodity.setName(instance.book().title());
             commodity.setStock(100);
             commodityNameList.add(commodity);

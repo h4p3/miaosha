@@ -6,7 +6,11 @@ spring:
     port: 6379
   profiles:
     active: dev
+
 server:
   port: 8888
   servlet:
     context-path: /ms
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
