@@ -41,10 +41,6 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
     }
 
-    private void extracted() {
-        throw new RuntimeException("插入有误");
-    }
-
     @Override
     public void seckill(String commodityCode) {
         Commodity one = this.lambdaQuery().eq(Commodity::getCode, commodityCode).one();

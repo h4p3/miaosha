@@ -3,6 +3,7 @@ package per.neal.controller;
 
 import org.springframework.web.bind.annotation.*;
 import per.neal.service.CommodityService;
+import per.neal.util.R;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2022-08-14
  */
 @RestController
-@RequestMapping("/commodity")
+@RequestMapping("/commodity/")
 public class CommodityController {
 
     private final CommodityService commodityService;
@@ -25,15 +26,15 @@ public class CommodityController {
     }
 
 
-    @GetMapping("/hello")
+    @GetMapping("hello")
     public String hello() {
         return "heelllooo";
     }
 
-    @PostMapping("/build")
-    public String build() {
+    @PostMapping("build")
+    public R<String> build() {
         commodityService.build();
-        return "ok";
+        return R.ok();
     }
 
 
@@ -41,16 +42,16 @@ public class CommodityController {
      * 秒杀
      */
     @PostMapping("seckill")
-    public String seckill(@RequestParam("code") String commodityCode) {
+    public R<String> seckill(@RequestParam("code") String commodityCode) {
         commodityService.seckill(commodityCode);
-        return "ok";
+        return R.ok();
     }
 
     /**
      * 支付
      */
     @PostMapping("pay")
-    public String pay(@RequestParam String orderNo) {
+    public R<String> pay(@RequestParam String orderNo) {
         // 模拟回调
         Runnable action = () -> {
             try {
@@ -62,7 +63,7 @@ public class CommodityController {
         };
         new Thread(action).start();
 
-        return "pay ok";
+        return R.ok("pay ok", null);
     }
 
     /**
@@ -70,7 +71,7 @@ public class CommodityController {
      *
      * @param orderNo 订单号
      */
-    public String payNotify(String orderNo) {
-        return "order finish";
+    public R<String> payNotify(String orderNo) {
+        return R.ok("order finish", null);
     }
 }

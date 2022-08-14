@@ -30,7 +30,7 @@ public class MySqlGenerator {
      * 要生成的表名
      */
     private static final String[] TABLES = {
-            "commodity",
+            "commodity", "order"
     };
 
     /**
@@ -71,10 +71,10 @@ public class MySqlGenerator {
 
         // TODO 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:55001/" + DATABASE + "?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
+        dsc.setUrl("jdbc:mysql://localhost:3306/" + DATABASE + "?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("mysqlpw");
+        dsc.setPassword("rootpw");
         mpg.setDataSource(dsc);
 
         // TODO 包配置
@@ -124,6 +124,7 @@ public class MySqlGenerator {
         mpg.setCfg(cfg);
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
+        strategy.setVersionFieldName("version");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);

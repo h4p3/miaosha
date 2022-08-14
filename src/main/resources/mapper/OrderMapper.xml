@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.neal.dao.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="per.neal.entity.Order">
+                <id column="id" property="id"/>
+                <result column="code" property="code"/>
+                <result column="order_no" property="orderNo"/>
+                <result column="amount" property="amount"/>
+                <result column="num" property="num"/>
+                <result column="commodity_code" property="commodityCode"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, order_no, amount, num, commodity_code
+    </sql>
+</mapper>

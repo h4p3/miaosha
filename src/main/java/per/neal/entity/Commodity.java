@@ -2,6 +2,7 @@ package per.neal.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -34,6 +35,10 @@ public class Commodity extends Model<Commodity> {
 
     @ApiModelProperty(value = "库存")
     private Integer stock;
+
+    @ApiModelProperty(value = "乐观锁字段")
+    @Version
+    private Integer version;
 
 
     @Override
