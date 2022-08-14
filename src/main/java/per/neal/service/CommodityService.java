@@ -13,4 +13,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CommodityService extends IService<Commodity> {
 
+    /**
+     * 构建插入假数据
+     */
+    void build();
 }
