@@ -1,9 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: mysql://root:mysqlpw@localhost:55001
+    url: jdbc:mysql://root:mysqlpw@localhost:55001?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
   redis:
     port: 55000
     password: redispw
+  profiles:
+    active: dev
 server:
   port: 8888
